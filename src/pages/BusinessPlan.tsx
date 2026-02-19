@@ -70,7 +70,7 @@ const BusinessPlan = () => {
           {/* MA/CP label */}
           <div className="px-5 py-4 border-b border-border">
             <p className="text-xs uppercase tracking-widest text-muted-foreground">MA / CP</p>
-            <p className="text-sm font-semibold mt-1 truncate text-foreground">{ma}</p>
+            <p className="text-sm font-semibold mt-1 text-foreground break-words">{ma}</p>
           </div>
 
           {/* Menu */}
