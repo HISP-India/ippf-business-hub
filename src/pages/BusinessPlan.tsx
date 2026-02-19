@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, ChevronRight, LogOut, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import ippfLogo from "@/assets/ippf-logo-white.png";
+import OrganizationDetails from "@/components/business-plan/OrganizationDetails";
 
 const bpMenuItems = [
   { id: "1.1", label: "Organization Details" },
@@ -118,23 +120,47 @@ const BusinessPlan = () => {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 p-8 overflow-y-auto">
-          {activeItem ? (
+        <main className="flex-1 overflow-y-auto">
+          {/* Context bar */}
+          <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm">
             <div>
-              <h1 className="text-2xl font-semibold text-foreground mb-2">
-                {bpMenuItems.find((i) => i.id === activeItem)?.id}{" "}
-                {bpMenuItems.find((i) => i.id === activeItem)?.label}
-              </h1>
-              <p className="text-muted-foreground">Coming Soon</p>
+              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
+              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
             </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <h1 className="text-2xl font-semibold text-foreground mb-2">Annual Business Plan</h1>
-              <p className="text-muted-foreground">
-                Select a section from the sidebar to get started.
-              </p>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
+              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
             </div>
-          )}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
+              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
+              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
+            </div>
+          </div>
+
+          <div className="p-8">
+            {activeItem === "1.1" ? (
+              <OrganizationDetails />
+            ) : activeItem ? (
+              <div>
+                <h1 className="text-2xl font-semibold text-foreground mb-2">
+                  {bpMenuItems.find((i) => i.id === activeItem)?.id}{" "}
+                  {bpMenuItems.find((i) => i.id === activeItem)?.label}
+                </h1>
+                <p className="text-muted-foreground">Coming Soon</p>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <h1 className="text-2xl font-semibold text-foreground mb-2">Annual Business Plan</h1>
+                <p className="text-muted-foreground">
+                  Select a section from the sidebar to get started.
+                </p>
+              </div>
+            )}
+          </div>
         </main>
       </div>
     </div>
