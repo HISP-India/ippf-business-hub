@@ -11,12 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
@@ -55,38 +49,60 @@ const WordCounter = ({ max }: { max: number }) => (
   <p className="text-xs text-muted-foreground mt-1 italic">{max} words remaining</p>
 );
 
+/* ───── Reusable accordion matching 1.1 style ───── */
+const SectionAccordion = ({
+  number,
+  title,
+  isOpen,
+  onToggle,
+  children,
+}: {
+  number: number;
+  title: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) => (
+  <div className="border border-border rounded-md overflow-hidden">
+    <button
+      onClick={onToggle}
+      className={`w-full flex items-center gap-3 px-5 py-3 text-left transition-colors ${
+        isOpen
+          ? "bg-[#00AEEF]/20 border-b border-border"
+          : "bg-background hover:bg-secondary/40"
+      }`}
+    >
+      <span
+        className={`flex items-center justify-center h-6 w-6 rounded-full text-xs font-semibold ${
+          isOpen ? "bg-[#005F6A] text-white" : "text-[#005F6A]"
+        }`}
+      >
+        {number}
+      </span>
+      <span className="text-sm font-semibold text-[#005F6A]">{title}</span>
+    </button>
+    {isOpen && <div className="p-5 bg-background">{children}</div>}
+  </div>
+);
+
 const NarrativePlan = () => {
-  const [openSection, setOpenSection] = useState<string>("section-1");
+  const [openSection, setOpenSection] = useState<number>(1);
+
+  const toggle = (n: number) => setOpenSection(openSection === n ? 0 : n);
+  const goNext = () => {
+    if (openSection < 3) setOpenSection(openSection + 1);
+  };
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-primary mb-4">1.2 Narrative Plan</h1>
+      <h2 className="text-xl font-semibold text-[#005F6A] mb-5">1.2 Narrative Plan</h2>
 
-      <Accordion
-        type="single"
-        collapsible
-        value={openSection}
-        onValueChange={(val) => setOpenSection(val)}
-        className="border border-border rounded-md bg-background"
-      >
-        {/* Section 1: Country context and theory of change */}
-        <AccordionItem value="section-1" className="border-b-0">
-          <AccordionTrigger className="px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">1</span>
-              <span className="text-primary font-semibold text-base">Country context and theory of change</span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="bg-[#E0F7F7] rounded-md px-4 py-2 mb-6">
-              <span className="text-primary font-semibold flex items-center gap-2">
-                <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">1</span>
-                Country context and theory of change
-              </span>
-            </div>
-
+      <div className="space-y-3">
+        {/* ─── 1. Country context and theory of change ─── */}
+        <SectionAccordion number={1} title="Country context and theory of change" isOpen={openSection === 1} onToggle={() => toggle(1)}>
+          <div className="space-y-6">
             {/* Ques 1 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 1. Country context <InfoIcon tooltip="Describe the country context as relevant to SRHR." />
               </Label>
@@ -98,7 +114,7 @@ const NarrativePlan = () => {
             </div>
 
             {/* Ques 2 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 2. Strategy <InfoIcon tooltip="Describe your current strategy or theory of change." />
               </Label>
@@ -113,7 +129,7 @@ const NarrativePlan = () => {
             </div>
 
             {/* Ques 3 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 3. Landscape of other actors <InfoIcon tooltip="Describe other key actors in your country." />
               </Label>
@@ -128,7 +144,7 @@ const NarrativePlan = () => {
             </div>
 
             {/* Ques 4 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 4. External risks and risk mitigation <InfoIcon tooltip="Describe critical external risks and challenges." />
               </Label>
@@ -140,7 +156,7 @@ const NarrativePlan = () => {
             </div>
 
             {/* Ques 5 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 5. SMART Outcomes <InfoIcon tooltip="Describe your medium term strategic outcomes." />
               </Label>
@@ -162,7 +178,7 @@ const NarrativePlan = () => {
             </div>
 
             {/* Ques 6 */}
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">
                 Ques 6. Youth Leadership and Involvement <InfoIcon tooltip="Describe the process to ensure youth decided 5% of your core funding." />
               </Label>
@@ -174,34 +190,19 @@ const NarrativePlan = () => {
             </div>
 
             {/* Action buttons */}
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3 pt-2">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
                 SAVE AS DRAFT
               </Button>
-              <Button className="bg-[#005F6A] hover:bg-[#004F5A] text-white">
-                NEXT
-              </Button>
+              <Button onClick={goNext}>NEXT</Button>
             </div>
-          </AccordionContent>
-        </AccordionItem>
+          </div>
+        </SectionAccordion>
 
-        {/* Section 2: Organisational status */}
-        <AccordionItem value="section-2" className="border-b-0 border-t border-border">
-          <AccordionTrigger className="px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">2</span>
-              <span className="text-primary font-semibold text-base">Organisational status</span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="bg-[#E0F7F7] rounded-md px-4 py-2 mb-6">
-              <span className="text-primary font-semibold flex items-center gap-2">
-                <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">2</span>
-                Organisational status
-              </span>
-            </div>
-
-            <h3 className="text-primary font-semibold text-base mb-4">Challenges and opportunities</h3>
+        {/* ─── 2. Organisational status ─── */}
+        <SectionAccordion number={2} title="Organisational status" isOpen={openSection === 2} onToggle={() => toggle(2)}>
+          <div className="space-y-5">
+            <h3 className="text-base font-semibold text-[#005F6A]">Challenges and opportunities</h3>
 
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
@@ -241,38 +242,23 @@ const NarrativePlan = () => {
               </table>
             </div>
 
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3 pt-2">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
                 SAVE AS DRAFT
               </Button>
-              <Button className="bg-[#005F6A] hover:bg-[#004F5A] text-white">
-                NEXT
-              </Button>
+              <Button onClick={goNext}>NEXT</Button>
             </div>
-          </AccordionContent>
-        </AccordionItem>
+          </div>
+        </SectionAccordion>
 
-        {/* Section 3: Technical Assistance */}
-        <AccordionItem value="section-3" className="border-b-0 border-t border-border">
-          <AccordionTrigger className="px-4 py-3 hover:no-underline">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">3</span>
-              <span className="text-primary font-semibold text-base">Technical Assistance</span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="bg-[#E0F7F7] rounded-md px-4 py-2 mb-6">
-              <span className="text-primary font-semibold flex items-center gap-2">
-                <span className="flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">3</span>
-                Technical Assistance
-              </span>
-            </div>
-
-            <p className="text-sm text-muted-foreground italic mb-6">
+        {/* ─── 3. Technical Assistance ─── */}
+        <SectionAccordion number={3} title="Technical Assistance" isOpen={openSection === 3} onToggle={() => toggle(3)}>
+          <div className="space-y-5">
+            <p className="text-sm text-muted-foreground italic">
               Choose as many as relevant with number 1 being the top priority/area of expertise and 5 being the lowest.
             </p>
 
-            <div className="grid grid-cols-2 gap-8 mb-6">
+            <div className="grid grid-cols-2 gap-8">
               <div>
                 <h4 className="font-semibold text-sm text-foreground mb-4">
                   Main Technical Assistance / Capacity (our organisational needs)
@@ -294,7 +280,7 @@ const NarrativePlan = () => {
                 ))}
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-primary mb-4">
+                <h4 className="font-semibold text-sm text-[#005F6A] mb-4">
                   Organisational Areas of Expertise / Capacity (we can share tools & train others)
                 </h4>
                 {[1, 2, 3, 4, 5].map((n) => (
@@ -315,23 +301,21 @@ const NarrativePlan = () => {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div>
               <Label className="text-foreground font-semibold text-sm">Other</Label>
               <Textarea className="mt-2 min-h-[100px]" />
               <WordCounter max={200} />
             </div>
 
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3 pt-2">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
                 SAVE AS DRAFT
               </Button>
-              <Button className="bg-[#005F6A] hover:bg-[#004F5A] text-white">
-                NEXT: 2.1 Project Description
-              </Button>
+              <Button>NEXT: 2.1 Project Description</Button>
             </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </div>
+        </SectionAccordion>
+      </div>
     </div>
   );
 };
