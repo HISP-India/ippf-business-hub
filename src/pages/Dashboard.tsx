@@ -14,7 +14,7 @@ import { ClipboardList, FileCheck, BarChart3, Info, Globe, LogOut } from "lucide
 import ippfLogo from "@/assets/ippf-logo-white.png";
 
 const regionData: Record<string, string[]> = {
-  "South Asia": [
+  "AR": [
     "Afghan Family Guidance Association",
     "Family Planning Association of Bangladesh",
     "Respect Educate Nurture and Empower Women",
@@ -23,7 +23,7 @@ const regionData: Record<string, string[]> = {
     "Family Planning Association of Nepal",
     "Family Planning Association of Sri Lanka",
   ],
-  "Africa": [
+  "AF": [
     "Association Beninoise pour la Promotion de la Famille",
     "Association Burkinabe pour le Bien-Etre Familial",
     "Association Burundaise pour le Bien-Etre Familial",
@@ -42,7 +42,7 @@ const regionData: Record<string, string[]> = {
     "Planned Parenthood Association of Zambia",
     "Zimbabwe National Family Planning Council",
   ],
-  "Americas & Caribbean": [
+  "SAR": [
     "Fundacion para Estudio e Investigacion de la Mujer",
     "Bahamas Family Planning Association",
     "Barbados Family Planning Association",
@@ -55,7 +55,7 @@ const regionData: Record<string, string[]> = {
     "Instituto Peruano de Paternidad Responsable",
     "Planned Parenthood Federation of America",
   ],
-  "Arab World": [
+  "AWR": [
     "Egyptian Family Planning Association",
     "Jordan Association for Family Planning and Protection",
     "Lebanese Family Planning Association for Development and Empowerment",
@@ -64,7 +64,7 @@ const regionData: Record<string, string[]> = {
     "Association Tunisienne de la Sante de la Reproduction",
     "Yemeni Family Care Association",
   ],
-  "East & SE Asia & Oceania": [
+  "ESEAOR": [
     "Sexual Health Quarters",
     "Reproductive Health Association of Cambodia",
     "China Family Planning Association",
@@ -74,7 +74,7 @@ const regionData: Record<string, string[]> = {
     "Population and Development Association",
     "Vietnam Family Planning Association",
   ],
-  "Europe & Central Asia": [
+  "EN": [
     "Albanian Family Planning Association",
     "Armenian Family Planning Association",
     "Mouvement Francais pour le Planning Familial",
