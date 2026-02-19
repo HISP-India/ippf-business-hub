@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import bannerImg from "@/assets/banner-img.png";
+import ippfLogo from "@/assets/ippf-logo-white.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ const LoginPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[hsl(240,60%,30%,0.55)] to-[hsl(200,70%,40%,0.4)]" />
-        {/* Logo placeholder */}
+        {/* Logo */}
         <div className="relative z-10 p-8">
-          <span className="text-2xl font-bold text-white tracking-wide">IPPF</span>
+          <img src={ippfLogo} alt="IPPF Logo" className="h-12" />
         </div>
       </div>
 
@@ -55,7 +56,7 @@ const LoginPage = () => {
           <div className="w-full max-w-[400px] space-y-8">
             {/* Mobile logo */}
             <div className="lg:hidden mb-4">
-              <span className="text-2xl font-bold text-primary tracking-wide">IPPF</span>
+              <img src={ippfLogo} alt="IPPF Logo" className="h-10 brightness-0 saturate-100" style={{ filter: 'brightness(0) saturate(100%) invert(22%) sepia(93%) saturate(5765%) hue-rotate(355deg) brightness(95%) contrast(92%)' }} />
             </div>
 
             <div className="space-y-2">
