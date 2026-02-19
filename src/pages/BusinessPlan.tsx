@@ -143,7 +143,7 @@ const BusinessPlan = () => {
 
           <div className="p-8">
             {activeItem === "1.1" ? (
-              <OrganizationDetails />
+              <OrganizationDetails ma={ma} region={region} />
             ) : activeItem ? (
               <div>
                 <h1 className="text-2xl font-semibold text-foreground mb-2">
