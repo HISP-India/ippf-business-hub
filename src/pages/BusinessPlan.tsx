@@ -61,16 +61,16 @@ const BusinessPlan = () => {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-72 shrink-0 flex flex-col bg-[hsl(210,60%,45%)] text-primary-foreground overflow-y-auto">
+        <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border overflow-y-auto">
           {/* Logo area */}
-          <div className="p-5 flex justify-center bg-[hsl(210,60%,40%)]">
-            <img src={ippfLogo} alt="IPPF" className="h-14" />
+          <div className="p-5 flex justify-center border-b border-border">
+            <img src={ippfLogo} alt="IPPF" className="h-14 brightness-0" />
           </div>
 
           {/* MA/CP label */}
-          <div className="px-5 py-4 border-b border-primary-foreground/20">
-            <p className="text-xs uppercase tracking-widest opacity-70">Select MA / CP</p>
-            <p className="text-sm font-semibold mt-1 truncate">{ma}</p>
+          <div className="px-5 py-4 border-b border-border">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Select MA / CP</p>
+            <p className="text-sm font-semibold mt-1 truncate text-foreground">{ma}</p>
           </div>
 
           {/* Menu */}
@@ -78,7 +78,7 @@ const BusinessPlan = () => {
             {/* Annual Business Plan group */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-full flex items-center justify-between px-5 py-3 bg-[hsl(210,60%,38%)] hover:bg-[hsl(210,60%,34%)] transition-colors font-semibold text-sm"
+              className="w-full flex items-center justify-between px-5 py-3 bg-secondary hover:bg-secondary/80 transition-colors font-semibold text-sm text-foreground border-b border-border"
             >
               Annual Business Plan
               {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
@@ -90,10 +90,10 @@ const BusinessPlan = () => {
                   <li key={item.id}>
                     <button
                       onClick={() => setActiveItem(item.id)}
-                      className={`w-full text-left px-5 py-3 text-sm transition-colors border-b border-primary-foreground/10 ${
+                      className={`w-full text-left px-5 py-3 text-sm transition-colors border-b border-border ${
                         activeItem === item.id
-                          ? "bg-[hsl(186,100%,21%)] font-semibold"
-                          : "bg-[hsl(195,80%,50%)] hover:bg-[hsl(195,80%,44%)]"
+                          ? "border-l-4 border-l-primary bg-secondary/60 font-semibold text-foreground"
+                          : "text-foreground hover:bg-secondary/40"
                       }`}
                     >
                       {item.id} {item.label}
@@ -105,11 +105,11 @@ const BusinessPlan = () => {
           </nav>
 
           {/* Back button */}
-          <div className="p-4 border-t border-primary-foreground/20">
+          <div className="p-4 border-t border-border">
             <Button
               variant="ghost"
               size="sm"
-              className="w-full text-primary-foreground hover:bg-primary-foreground/10 justify-start gap-2"
+              className="w-full text-foreground hover:bg-secondary justify-start gap-2"
               onClick={() => navigate("/dashboard", { state: { region, ma } })}
             >
               ← Back to Dashboard
