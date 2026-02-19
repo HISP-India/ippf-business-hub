@@ -145,7 +145,12 @@ const ChipSelect = ({
 );
 
 /* ───── main component ───── */
-const OrganizationDetails = () => {
+interface OrganizationDetailsProps {
+  ma?: string;
+  region?: string;
+}
+
+const OrganizationDetails = ({ ma = "IPPF", region = "" }: OrganizationDetailsProps) => {
   const [openSection, setOpenSection] = useState<number>(1);
   const [selectedVolunteers, setSelectedVolunteers] = useState<string | null>(null);
   const [selectedOrgType, setSelectedOrgType] = useState<string | null>(null);
@@ -168,35 +173,35 @@ const OrganizationDetails = () => {
         {/* ─── 1. Membership Details ─── */}
         <SectionAccordion number={1} title="Membership details" isOpen={openSection === 1} onToggle={() => toggle(1)}>
           <div className="space-y-5">
-            {/* Row 1 */}
+            {/* Row 1 – read-only pre-filled */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label className="text-foreground font-semibold text-sm">Country of Operation</Label>
-                <Input className="mt-1 bg-secondary/30" />
+                <Input className="mt-1 bg-secondary/30" defaultValue="United Kingdom" readOnly />
               </div>
               <div>
                 <Label className="text-foreground font-semibold text-sm">Organisation Code</Label>
-                <Input className="mt-1 bg-secondary/30" placeholder="TEST" />
+                <Input className="mt-1 bg-secondary/30" defaultValue="TEST" readOnly />
               </div>
               <div>
                 <Label className="text-foreground font-semibold text-sm">IPPF Region</Label>
-                <Input className="mt-1 bg-secondary/30" />
+                <Input className="mt-1 bg-secondary/30" defaultValue={region || "Europe"} readOnly />
               </div>
             </div>
 
-            {/* Row 2 */}
+            {/* Row 2 – read-only pre-filled */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label className="text-foreground font-semibold text-sm">Organisation Name (English)</Label>
-                <Input className="mt-1 bg-secondary/30" />
+                <Input className="mt-1 bg-secondary/30" defaultValue={ma} readOnly />
               </div>
               <div>
                 <Label className="text-foreground font-semibold text-sm">Organisation name (original language)</Label>
-                <Input className="mt-1 bg-secondary/30" />
+                <Input className="mt-1 bg-secondary/30" defaultValue={ma} readOnly />
               </div>
             </div>
 
-            {/* Row 3 – Grant amounts */}
+            {/* Row 3 – Grant amounts (read-only pre-filled) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label className="text-foreground font-semibold text-sm">
@@ -204,7 +209,7 @@ const OrganizationDetails = () => {
                 </Label>
                 <div className="relative mt-1">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
-                  <Input className="pl-7 bg-secondary/30" />
+                  <Input className="pl-7 bg-secondary/30" defaultValue="150,000" readOnly />
                 </div>
               </div>
               <div>
@@ -213,7 +218,7 @@ const OrganizationDetails = () => {
                 </Label>
                 <div className="relative mt-1">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
-                  <Input className="pl-7 bg-secondary/30" />
+                  <Input className="pl-7 bg-secondary/30" defaultValue="112,500" readOnly />
                 </div>
               </div>
               <div>
@@ -222,7 +227,7 @@ const OrganizationDetails = () => {
                 </Label>
                 <div className="relative mt-1">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
-                  <Input className="pl-7 bg-secondary/30" />
+                  <Input className="pl-7 bg-secondary/30" defaultValue="112,500" readOnly />
                 </div>
               </div>
             </div>
