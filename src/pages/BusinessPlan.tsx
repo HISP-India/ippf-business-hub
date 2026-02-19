@@ -4,6 +4,7 @@ import { ChevronDown, ChevronRight, LogOut, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ippfLogo from "@/assets/ippf-logo-white.png";
+import ippfLogoRed from "@/assets/ippf-logo-red.png";
 import OrganizationDetails from "@/components/business-plan/OrganizationDetails";
 
 const bpMenuItems = [
@@ -66,7 +67,7 @@ const BusinessPlan = () => {
         <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border overflow-y-auto">
           {/* Logo area */}
           <div className="p-5 flex justify-center border-b border-border">
-            <img src={ippfLogo} alt="IPPF" className="h-14 brightness-0" />
+            <img src={ippfLogoRed} alt="IPPF" className="h-14" />
           </div>
 
           {/* MA/CP label */}
