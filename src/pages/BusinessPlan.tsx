@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import ippfLogo from "@/assets/ippf-logo-white.png";
 import ippfLogoRed from "@/assets/ippf-logo-red.png";
 import OrganizationDetails from "@/components/business-plan/OrganizationDetails";
+import NarrativePlan from "@/components/business-plan/NarrativePlan";
 
 const bpMenuItems = [
   { id: "1.1", label: "Organization Details" },
@@ -145,6 +146,8 @@ const BusinessPlan = () => {
           <div className="p-8">
             {activeItem === "1.1" ? (
               <OrganizationDetails ma={ma} region={region} />
+            ) : activeItem === "1.2" ? (
+              <NarrativePlan />
             ) : activeItem ? (
               <div>
                 <h1 className="text-2xl font-semibold text-foreground mb-2">
