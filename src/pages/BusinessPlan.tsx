@@ -30,118 +30,116 @@ const BusinessPlan = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen flex flex-col bg-secondary">
-      {/* Header */}
-      <header className="h-16 bg-primary flex items-center justify-between px-6 shrink-0 z-10">
-        <img src={ippfLogo} alt="IPPF" className="h-10" />
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+    <div className="min-h-screen flex bg-secondary">
+      {/* Sidebar - full height */}
+      <aside className="w-72 shrink-0 flex flex-col bg-primary overflow-y-auto">
+        {/* Logo area in primary color */}
+        <div className="p-5 flex justify-center">
+          <img src={ippfLogo} alt="IPPF" className="h-14" />
+        </div>
+
+        {/* MA/CP label */}
+        <div className="px-5 py-4 border-t border-primary-foreground/20">
+          <p className="text-xs uppercase tracking-widest text-primary-foreground/70">Select MA / CP</p>
+          <p className="text-sm font-semibold mt-1 text-primary-foreground break-words">{ma}</p>
+        </div>
+
+        {/* Menu */}
+        <nav className="flex-1">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="w-full flex items-center justify-between px-5 py-3 bg-primary-foreground/10 hover:bg-primary-foreground/15 transition-colors font-semibold text-sm text-primary-foreground border-t border-primary-foreground/20"
           >
-            Maintenance
-          </Button>
+            Annual Business Plan
+            {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+          </button>
+
+          {menuOpen && (
+            <ul className="flex flex-col">
+              {bpMenuItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => setActiveItem(item.id)}
+                    className={`w-full text-left px-5 py-3 text-sm transition-colors text-primary-foreground ${
+                      activeItem === item.id
+                        ? "bg-[hsl(0,85%,55%)] font-semibold"
+                        : "hover:bg-primary-foreground/10"
+                    }`}
+                  >
+                    {item.id} {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+
+        {/* Back button */}
+        <div className="p-4 border-t border-primary-foreground/20">
           <Button
             variant="ghost"
             size="sm"
-            className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
+            className="w-full text-primary-foreground hover:bg-primary-foreground/10 justify-start gap-2"
+            onClick={() => navigate("/dashboard", { state: { region, ma } })}
           >
-            <Globe className="h-4 w-4" />
-            EN
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
-            onClick={() => navigate("/")}
-          >
-            <LogOut className="h-4 w-4" />
-            LOG OUT
+            ← Back to Dashboard
           </Button>
         </div>
-      </header>
+      </aside>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border overflow-y-auto">
-          {/* Logo area */}
-          <div className="p-5 flex justify-center border-b border-border">
-            <img src={ippfLogoRed} alt="IPPF" className="h-14" />
-          </div>
-
-          {/* MA/CP label */}
-          <div className="px-5 py-4 border-b border-border">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">MA / CP</p>
-            <p className="text-sm font-semibold mt-1 text-foreground break-words">{ma}</p>
-          </div>
-
-          {/* Menu */}
-          <nav className="flex-1">
-            {/* Annual Business Plan group */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="w-full flex items-center justify-between px-5 py-3 bg-secondary hover:bg-secondary/80 transition-colors font-semibold text-sm text-foreground border-b border-border"
-            >
-              Annual Business Plan
-              {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-            </button>
-
-            {menuOpen && (
-              <ul className="flex flex-col">
-                {bpMenuItems.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => setActiveItem(item.id)}
-                      className={`w-full text-left px-5 py-3 text-sm transition-colors border-b border-border ${
-                        activeItem === item.id
-                          ? "border-l-4 border-l-primary bg-secondary/60 font-semibold text-foreground"
-                          : "text-foreground hover:bg-secondary/40"
-                      }`}
-                    >
-                      {item.id} {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </nav>
-
-          {/* Back button */}
-          <div className="p-4 border-t border-border">
+      {/* Right side with header + content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Top header bar */}
+        <header className="h-16 bg-background flex items-center justify-end px-6 shrink-0 border-b border-border">
+          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="sm"
-              className="w-full text-foreground hover:bg-secondary justify-start gap-2"
-              onClick={() => navigate("/dashboard", { state: { region, ma } })}
+              className="text-foreground hover:bg-secondary gap-1"
             >
-              ← Back to Dashboard
+              <Globe className="h-4 w-4" />
+              English
+            </Button>
+            <Button
+              size="sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              IPPF
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-foreground/30 text-foreground hover:bg-secondary gap-1"
+              onClick={() => navigate("/")}
+            >
+              <LogOut className="h-4 w-4" />
+              LOG OUT
             </Button>
           </div>
-        </aside>
+        </header>
+
+        {/* Context bar */}
+        <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
+          </div>
+        </div>
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
-          {/* Context bar */}
-          <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
-            </div>
-          </div>
-
           <div className="p-8">
             {activeItem === "1.1" ? (
               <OrganizationDetails ma={ma} region={region} />
