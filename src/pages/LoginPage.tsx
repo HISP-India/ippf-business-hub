@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import loginBg from "@/assets/login-bg.jpeg";
-import ippfLogoWhite from "@/assets/ippf-logo-white.png";
+import ippfLogoRed from "@/assets/ippf-logo-red-new.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const LoginPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(240,50%,25%,0.7)] to-[hsl(200,60%,35%,0.5)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(4,85%,54%,0.65)] to-[hsl(4,85%,40%,0.45)]" />
         {/* Tagline */}
         <div className="relative z-10 flex flex-col justify-end p-12 mt-auto">
           <h2 className="text-[28px] font-semibold text-white leading-snug">
@@ -60,9 +60,9 @@ const LoginPage = () => {
         {/* Form */}
         <div className="flex flex-1 items-center justify-center px-8 pb-16">
           <div className="w-full max-w-[400px] space-y-8">
-            {/* Mobile logo */}
-            <div className="lg:hidden mb-4">
-              <img src={ippfLogoWhite} alt="IPPF Logo" className="h-10" style={{ filter: 'brightness(0) saturate(100%) invert(22%) sepia(93%) saturate(5765%) hue-rotate(355deg) brightness(95%) contrast(92%)' }} />
+            {/* Logo */}
+            <div className="mb-4">
+              <img src={ippfLogoRed} alt="IPPF Logo" className="h-12" />
             </div>
 
             <div className="space-y-2">
