@@ -120,7 +120,7 @@ const BusinessPlan = () => {
             >
               {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
             </Button>
-            <img src={ippfLogo} alt="IPPF" className="h-10" />
+            
           </div>
           <div className="flex items-center gap-3">
             <Button
