@@ -27,8 +27,6 @@ const LoginPage = () => {
           alt="IPPF Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Right: Login Form */}
