@@ -52,8 +52,11 @@ const BusinessPlan = () => {
       {sidebarOpen && (
       <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border h-screen overflow-y-auto">
         {/* Logo area */}
-        <div className="p-5 flex justify-center border-b border-border">
-          <img src={ippfLogoRed} alt="IPPF" className="h-14" />
+        <div className="p-5 flex flex-col items-center gap-2 border-b border-border">
+          <img src={ippfLogoRed} alt="IPPF" className="h-12" />
+          <p className="text-[11px] font-medium text-muted-foreground tracking-wide text-center leading-tight">
+            International Planned Parenthood Federation
+          </p>
         </div>
 
         {/* MA/CP label */}
