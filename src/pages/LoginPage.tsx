@@ -29,12 +29,8 @@ const LoginPage = () => {
         />
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-gradient-to-br from-[hsl(4,85%,54%,0.65)] to-[hsl(4,85%,40%,0.45)]" />
-        {/* Tagline */}
         <div className="relative z-10 flex flex-col justify-end p-12 mt-auto">
-          <h2 className="text-[28px] font-semibold text-white leading-snug">
-            Empowering communities.<br />Building healthier futures.
-          </h2>
-          <p className="text-[15px] text-white/80 mt-3 max-w-md">
+          <p className="text-[15px] text-white/80 max-w-md">
             IPPF Business Planning & Reporting Portal
           </p>
         </div>
