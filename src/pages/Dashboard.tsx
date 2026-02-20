@@ -140,7 +140,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-secondary flex flex-col">
       {/* Header */}
       <header className="h-16 bg-primary flex items-center justify-between px-6 shrink-0">
-        <img src={ippfLogo} alt="IPPF" className="h-10" />
+        <div className="flex items-center gap-2" />
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
