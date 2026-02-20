@@ -4,8 +4,8 @@ import { Eye, EyeOff, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import bannerImg from "@/assets/banner-img.png";
-import ippfLogo from "@/assets/ippf-logo-white.png";
+import loginBg from "@/assets/login-bg.jpeg";
+import ippfLogoWhite from "@/assets/ippf-logo-white.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -20,17 +20,27 @@ const LoginPage = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left: Banner */}
-      <div className="hidden lg:flex lg:w-[55%] relative">
+      {/* Left: Banner with new background */}
+      <div className="hidden lg:flex lg:w-[55%] relative overflow-hidden">
         <img
-          src={bannerImg}
+          src={loginBg}
           alt="IPPF Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(240,60%,30%,0.55)] to-[hsl(200,70%,40%,0.4)]" />
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(240,50%,25%,0.7)] to-[hsl(200,60%,35%,0.5)]" />
         {/* Logo */}
         <div className="relative z-10 p-8">
-          <img src={ippfLogo} alt="IPPF Logo" className="h-12" />
+          <img src={ippfLogoWhite} alt="IPPF Logo" className="h-12" />
+        </div>
+        {/* Tagline */}
+        <div className="relative z-10 flex flex-col justify-end p-12 mt-auto">
+          <h2 className="text-[28px] font-semibold text-white leading-snug">
+            Empowering communities.<br />Building healthier futures.
+          </h2>
+          <p className="text-[15px] text-white/80 mt-3 max-w-md">
+            IPPF Business Planning & Reporting Portal
+          </p>
         </div>
       </div>
 
@@ -56,7 +66,7 @@ const LoginPage = () => {
           <div className="w-full max-w-[400px] space-y-8">
             {/* Mobile logo */}
             <div className="lg:hidden mb-4">
-              <img src={ippfLogo} alt="IPPF Logo" className="h-10 brightness-0 saturate-100" style={{ filter: 'brightness(0) saturate(100%) invert(22%) sepia(93%) saturate(5765%) hue-rotate(355deg) brightness(95%) contrast(92%)' }} />
+              <img src={ippfLogoWhite} alt="IPPF Logo" className="h-10" style={{ filter: 'brightness(0) saturate(100%) invert(22%) sepia(93%) saturate(5765%) hue-rotate(355deg) brightness(95%) contrast(92%)' }} />
             </div>
 
             <div className="space-y-2">
