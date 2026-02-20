@@ -1,66 +1,52 @@
 
 
-# Dashboard Enhancement: Welcome Banner, Deadlines, Status & Notice Board
+# Align Accordion Design Across Sections 2.2, 2.3, and 2.4 to Match 1.1
 
-## Overview
+## Problem
+Sections 2.2, 2.3, and 2.4 use a flat `Collapsible` style with teal-tinted backgrounds and no numbered badges, while section 1.1 uses a more polished `SectionAccordion` pattern with numbered circle badges, bordered containers, and a light blue active state. This creates visual inconsistency.
 
-Add four new informational sections to the Dashboard page below the navigation cards, inspired by the uploaded reference screenshots. All elements will follow the IPPF brand design system (Fire Red, Barlow typography, institutional layout).
+## Solution
+Replace the `Collapsible`-based accordion in all three sections with the same `SectionAccordion` pattern used in 1.1.
 
-## New Elements
+### Design Pattern (from 1.1)
+- Each accordion item wrapped in a `border border-border rounded-md` container
+- Trigger has a **numbered circle badge** (Deep Teal `#005F6A` background with white text when open, plain teal text when closed)
+- Active trigger background: `#00AEEF/20` (light Sky Blue)
+- Inactive trigger: white background with hover effect
+- Content area: white background with `p-5` padding
+- Items stacked with `space-y-3` gap
 
-### 1. Welcome Banner
-A clean welcome message card at the top of the content area (before the MA/CP selector), introducing the portal purpose.
-
-- White card with subtle border
-- Text: "Welcome to the IPPF Business Planning and Reporting Portal. The portal is your one-stop-shop for uploading your annual business plans, submitting annual and half-year reports, or for downloading reports and relevant documents."
-- Styled with Barlow 15px regular body text, #333333
-
-### 2. Deadlines Card
-A structured card displaying key reporting deadlines.
-
-- Card title "Deadlines" in Fire Red (#EE3124), Barlow SemiBold
-- List of deadline items with bold labels and date values:
-  - Annual Report: June 10
-  - HYR: October 1
-  - BP: October 1
-  - TRT Review: November 1
-  - AR/HYR Review: June 20
-- Clean vertical list layout with subtle separators
-
-### 3. Now Active / Status Card
-A status summary card showing current reporting activity.
-
-- Left border accent in Fire Red (4px)
-- Title "Now Active" in Fire Red bold
-- Status lines: "Annual reporting", "50% of MAs Commenced reporting", "05% finalized reporting"
-- Clean institutional style with progress context
-
-### 4. Notice Board Card
-An announcements/notice card with FAQ link.
-
-- Card title "Notice Board" in Fire Red
-- Sample notice text about system updates
-- "FAQs" link styled in Fire Red as a clickable hyperlink
-
-## Layout
-
-The new sections will be arranged below the navigation cards in a responsive grid:
-
-- Welcome banner: full width, placed above the MA/CP selector
-- Bottom row: 3-column grid on desktop (Deadlines | Now Active | Notice Board), stacking on mobile
+### Extract Shared Component
+Create a reusable `SectionAccordion` component in `src/components/business-plan/SectionAccordion.tsx` so all sections share the exact same accordion UI, avoiding code duplication.
 
 ## Technical Changes
 
-### File: `src/pages/Dashboard.tsx`
+### New File: `src/components/business-plan/SectionAccordion.tsx`
+- Extract the `SectionAccordion` component currently defined inside `OrganizationDetails.tsx`
+- Export it for use across all business plan sections
 
-1. Import `Calendar`, `Bell`, `HelpCircle`, `Activity` icons from lucide-react
-2. Add Welcome Banner section before the "Select MA/CP" heading
-3. Add a new 3-column grid section after the navigation cards containing:
-   - Deadlines card
-   - Now Active status card  
-   - Notice Board card
-4. All cards use existing `Card` / `CardContent` components
-5. Typography follows Barlow hierarchy from the design system
-6. Fire Red (#EE3124) used for card titles and accent borders via `text-primary` and `border-primary` classes
+### File: `src/components/business-plan/OrganizationDetails.tsx`
+- Import `SectionAccordion` from the new shared file
+- Remove the local `SectionAccordion` definition
 
-No new files or dependencies needed -- all built with existing UI components.
+### File: `src/components/business-plan/ProjectExpenseBudget.tsx`
+- Remove `Collapsible` imports
+- Import `SectionAccordion` from the shared file
+- Replace each `Collapsible`/`CollapsibleTrigger`/`CollapsibleContent` with `SectionAccordion`
+- Accordion items get numbered badges (1-11) matching the project item index
+
+### File: `src/components/business-plan/ExpenseBudgetByFocusArea.tsx`
+- Same replacement: swap `Collapsible` for `SectionAccordion`
+- Each project item gets its numbered badge
+
+### File: `src/components/business-plan/BudgetByExpenseCategory.tsx`
+- Same replacement: swap `Collapsible` for `SectionAccordion`
+- Each project item gets its numbered badge
+
+## Visual Result
+All accordion sections across 1.1, 2.2, 2.3, and 2.4 will have:
+- Consistent bordered containers
+- Numbered circle badges with Deep Teal colouring
+- Light Sky Blue active state background
+- White content areas
+- Uniform spacing and typography
