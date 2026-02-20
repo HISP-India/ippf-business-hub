@@ -254,11 +254,29 @@ const OrganizationDetails = ({ ma = "IPPF", region = "" }: OrganizationDetailsPr
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label className="text-foreground text-sm">Start year</Label>
-                  <Input className="mt-1" />
+                  <Select>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: 20 }, (_, i) => 2015 + i).map((year) => (
+                        <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div>
                   <Label className="text-foreground text-sm">End year</Label>
-                  <Input className="mt-1" />
+                  <Select>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: 20 }, (_, i) => 2015 + i).map((year) => (
+                        <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
@@ -281,11 +299,29 @@ const OrganizationDetails = ({ ma = "IPPF", region = "" }: OrganizationDetailsPr
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label className="text-foreground text-sm">Start year</Label>
-                  <Input className="mt-1" />
+                  <Select>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: 20 }, (_, i) => 2015 + i).map((year) => (
+                        <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div>
                   <Label className="text-foreground text-sm">End year</Label>
-                  <Input className="mt-1" />
+                  <Select>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: 20 }, (_, i) => 2015 + i).map((year) => (
+                        <SelectItem key={year} value={String(year)}>{year}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
