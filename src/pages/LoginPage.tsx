@@ -28,7 +28,7 @@ const LoginPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(4,85%,54%,0.65)] to-[hsl(4,85%,40%,0.45)]" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Right: Login Form */}
