@@ -10,6 +10,7 @@ import NarrativePlan from "@/components/business-plan/NarrativePlan";
 import ProjectDescription from "@/components/business-plan/ProjectDescription";
 import ProjectExpenseBudget from "@/components/business-plan/ProjectExpenseBudget";
 import ExpenseBudgetByFocusArea from "@/components/business-plan/ExpenseBudgetByFocusArea";
+import BudgetByExpenseCategory from "@/components/business-plan/BudgetByExpenseCategory";
 import TotalIncome from "@/components/business-plan/TotalIncome";
 
 const bpMenuItems = [
@@ -195,6 +196,8 @@ const BusinessPlan = () => {
             <ExpenseBudgetByFocusArea />
           ) : activeItem === "3.1" ? (
             <TotalIncome onNavigate={setActiveItem} />
+          ) : activeItem === "2.4" ? (
+            <BudgetByExpenseCategory />
           ) : activeItem ? (
             <div>
               <h1 className="text-2xl font-semibold text-foreground mb-2">
