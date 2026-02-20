@@ -35,149 +35,147 @@ const BusinessPlan = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen flex flex-col bg-secondary">
-      {/* Header */}
-      <header className="h-16 bg-primary flex items-center justify-between px-6 shrink-0 z-10">
-        <img src={ippfLogo} alt="IPPF" className="h-10" />
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+    <div className="h-screen flex bg-secondary overflow-hidden">
+      {/* Sidebar - fixed, independently scrollable */}
+      <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border h-screen overflow-y-auto">
+        {/* Logo area */}
+        <div className="p-5 flex justify-center border-b border-border">
+          <img src={ippfLogoRed} alt="IPPF" className="h-14" />
+        </div>
+
+        {/* MA/CP label */}
+        <div className="px-5 py-4 border-b border-border">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">MA / CP</p>
+          <p className="text-sm font-semibold mt-1 text-foreground break-words">{ma}</p>
+        </div>
+
+        {/* Menu */}
+        <nav className="flex-1">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="w-full flex items-center justify-between px-5 py-3 bg-secondary hover:bg-secondary/80 transition-colors font-semibold text-sm text-foreground border-b border-border"
           >
-            Maintenance
-          </Button>
+            Annual Business Plan
+            {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+          </button>
+
+          {menuOpen && (
+            <ul className="flex flex-col">
+              {bpMenuItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => setActiveItem(item.id)}
+                    className={`w-full text-left px-5 py-3 text-sm transition-colors border-b border-border ${
+                      activeItem === item.id
+                        ? "border-l-4 border-l-primary bg-secondary/60 font-semibold text-foreground"
+                        : "text-foreground hover:bg-secondary/40"
+                    }`}
+                  >
+                    {item.id} {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+
+        {/* Back button */}
+        <div className="p-4 border-t border-border">
           <Button
             variant="ghost"
             size="sm"
-            className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
+            className="w-full text-foreground hover:bg-secondary justify-start gap-2"
+            onClick={() => navigate("/dashboard", { state: { region, ma } })}
           >
-            <Globe className="h-4 w-4" />
-            EN
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
-            onClick={() => navigate("/")}
-          >
-            <LogOut className="h-4 w-4" />
-            LOG OUT
+            ← Back to Dashboard
           </Button>
         </div>
-      </header>
+      </aside>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border overflow-y-auto">
-          {/* Logo area */}
-          <div className="p-5 flex justify-center border-b border-border">
-            <img src={ippfLogoRed} alt="IPPF" className="h-14" />
-          </div>
-
-          {/* MA/CP label */}
-          <div className="px-5 py-4 border-b border-border">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">MA / CP</p>
-            <p className="text-sm font-semibold mt-1 text-foreground break-words">{ma}</p>
-          </div>
-
-          {/* Menu */}
-          <nav className="flex-1">
-            {/* Annual Business Plan group */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="w-full flex items-center justify-between px-5 py-3 bg-secondary hover:bg-secondary/80 transition-colors font-semibold text-sm text-foreground border-b border-border"
+      {/* Right side - header + content scroll together */}
+      <div className="flex-1 flex flex-col h-screen overflow-y-auto">
+        {/* Header */}
+        <header className="h-16 bg-primary flex items-center justify-between px-6 shrink-0">
+          <img src={ippfLogo} alt="IPPF" className="h-10" />
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
             >
-              Annual Business Plan
-              {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-            </button>
-
-            {menuOpen && (
-              <ul className="flex flex-col">
-                {bpMenuItems.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => setActiveItem(item.id)}
-                      className={`w-full text-left px-5 py-3 text-sm transition-colors border-b border-border ${
-                        activeItem === item.id
-                          ? "border-l-4 border-l-primary bg-secondary/60 font-semibold text-foreground"
-                          : "text-foreground hover:bg-secondary/40"
-                      }`}
-                    >
-                      {item.id} {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </nav>
-
-          {/* Back button */}
-          <div className="p-4 border-t border-border">
+              Maintenance
+            </Button>
             <Button
               variant="ghost"
               size="sm"
-              className="w-full text-foreground hover:bg-secondary justify-start gap-2"
-              onClick={() => navigate("/dashboard", { state: { region, ma } })}
+              className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
             >
-              ← Back to Dashboard
+              <Globe className="h-4 w-4" />
+              EN
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-primary-foreground hover:bg-primary-foreground/10 gap-1"
+              onClick={() => navigate("/")}
+            >
+              <LogOut className="h-4 w-4" />
+              LOG OUT
             </Button>
           </div>
-        </aside>
+        </header>
+
+        {/* Context bar */}
+        <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm shrink-0">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
+            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
+          </div>
+        </div>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto">
-          {/* Context bar */}
-          <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm">
+        <div className="p-8 flex-1">
+          {activeItem === "1.1" ? (
+            <OrganizationDetails ma={ma} region={region} />
+          ) : activeItem === "1.2" ? (
+            <NarrativePlan />
+          ) : activeItem === "2.1" ? (
+            <ProjectDescription onNavigate={setActiveItem} />
+          ) : activeItem === "2.2" ? (
+            <ProjectExpenseBudget />
+          ) : activeItem === "2.3" ? (
+            <ExpenseBudgetByFocusArea />
+          ) : activeItem === "3.1" ? (
+            <TotalIncome onNavigate={setActiveItem} />
+          ) : activeItem ? (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
+              <h1 className="text-2xl font-semibold text-foreground mb-2">
+                {bpMenuItems.find((i) => i.id === activeItem)?.id}{" "}
+                {bpMenuItems.find((i) => i.id === activeItem)?.label}
+              </h1>
+              <p className="text-muted-foreground">Coming Soon</p>
             </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <h1 className="text-2xl font-semibold text-foreground mb-2">Annual Business Plan</h1>
+              <p className="text-muted-foreground">
+                Select a section from the sidebar to get started.
+              </p>
             </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
-              <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
-            </div>
-          </div>
-
-          <div className="p-8">
-            {activeItem === "1.1" ? (
-              <OrganizationDetails ma={ma} region={region} />
-            ) : activeItem === "1.2" ? (
-              <NarrativePlan />
-            ) : activeItem === "2.1" ? (
-              <ProjectDescription onNavigate={setActiveItem} />
-            ) : activeItem === "2.2" ? (
-              <ProjectExpenseBudget />
-            ) : activeItem === "2.3" ? (
-              <ExpenseBudgetByFocusArea />
-            ) : activeItem === "3.1" ? (
-              <TotalIncome onNavigate={setActiveItem} />
-            ) : activeItem ? (
-              <div>
-                <h1 className="text-2xl font-semibold text-foreground mb-2">
-                  {bpMenuItems.find((i) => i.id === activeItem)?.id}{" "}
-                  {bpMenuItems.find((i) => i.id === activeItem)?.label}
-                </h1>
-                <p className="text-muted-foreground">Coming Soon</p>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full text-center">
-                <h1 className="text-2xl font-semibold text-foreground mb-2">Annual Business Plan</h1>
-                <p className="text-muted-foreground">
-                  Select a section from the sidebar to get started.
-                </p>
-              </div>
-            )}
-          </div>
-        </main>
+          )}
+        </div>
       </div>
     </div>
   );
