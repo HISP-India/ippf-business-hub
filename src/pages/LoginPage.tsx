@@ -52,8 +52,11 @@ const LoginPage = () => {
         <div className="flex flex-1 items-center justify-center px-8 pb-16">
           <div className="w-full max-w-[400px] space-y-8">
             {/* Logo */}
-            <div className="mb-4">
+            <div className="mb-4 flex items-center gap-3">
               <img src={ippfLogoRed} alt="IPPF Logo" className="h-12" />
+              <span className="text-[13px] font-medium text-foreground leading-tight border-l border-border pl-3">
+                International<br />Planned Parenthood<br />Federation
+              </span>
             </div>
 
             <div className="space-y-2">
