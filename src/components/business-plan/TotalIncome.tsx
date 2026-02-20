@@ -110,7 +110,7 @@ const TotalIncome = ({ onNavigate }: Props) => {
 
       {/* Largest contributor */}
       <div className="border border-border rounded-md bg-background p-6 mb-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-6 items-end">
           <div>
             <label className="text-sm font-semibold text-[#005F6A] block mb-2">
               Which organisation (government, trust, foundation, IPPF or other donor) was the largest contributor
