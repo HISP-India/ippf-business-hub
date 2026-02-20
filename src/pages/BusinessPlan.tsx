@@ -120,9 +120,6 @@ const BusinessPlan = () => {
             >
               {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
             </Button>
-            
-          </div>
-          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
@@ -132,6 +129,8 @@ const BusinessPlan = () => {
             >
               {isFullscreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
             </Button>
+          </div>
+          <div className="flex items-center gap-3">
             <Button
               variant="outline"
               size="sm"
