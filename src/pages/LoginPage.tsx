@@ -29,10 +29,6 @@ const LoginPage = () => {
         />
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-gradient-to-br from-[hsl(240,50%,25%,0.7)] to-[hsl(200,60%,35%,0.5)]" />
-        {/* Logo */}
-        <div className="relative z-10 p-8">
-          <img src={ippfLogoWhite} alt="IPPF Logo" className="h-12" />
-        </div>
         {/* Tagline */}
         <div className="relative z-10 flex flex-col justify-end p-12 mt-auto">
           <h2 className="text-[28px] font-semibold text-white leading-snug">
