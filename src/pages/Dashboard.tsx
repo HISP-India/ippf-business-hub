@@ -12,6 +12,10 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { ClipboardList, FileCheck, BarChart3, Info, Globe, LogOut } from "lucide-react";
 import ippfLogo from "@/assets/ippf-logo-white.png";
+import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
+import DeadlinesCard from "@/components/dashboard/DeadlinesCard";
+import NowActiveCard from "@/components/dashboard/NowActiveCard";
+import NoticeBoardCard from "@/components/dashboard/NoticeBoardCard";
 
 const regionData: Record<string, string[]> = {
   "AR": [
@@ -171,6 +175,9 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-6 md:p-10 max-w-6xl mx-auto w-full space-y-8">
+        {/* Welcome Banner */}
+        <WelcomeBanner />
+
         {/* Selection Card */}
         <section>
           <div className="flex items-center gap-2 mb-4">
@@ -255,6 +262,13 @@ const Dashboard = () => {
               </button>
             );
           })}
+        </section>
+
+        {/* Info Cards */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <DeadlinesCard />
+          <NowActiveCard />
+          <NoticeBoardCard />
         </section>
       </main>
     </div>
