@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ChevronDown, ChevronRight, LogOut, Globe } from "lucide-react";
+import { ChevronDown, ChevronRight, LogOut, Globe, PanelLeftClose, PanelLeftOpen, Maximize, Minimize } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ippfLogo from "@/assets/ippf-logo-white.png";
@@ -33,10 +33,23 @@ const BusinessPlan = () => {
   const region = (state as any)?.region ?? "";
   const [menuOpen, setMenuOpen] = useState(true);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
 
   return (
     <div className="h-screen flex bg-secondary overflow-hidden">
       {/* Sidebar - fixed, independently scrollable */}
+      {sidebarOpen && (
       <aside className="w-72 shrink-0 flex flex-col bg-background border-r border-border h-screen overflow-y-auto">
         {/* Logo area */}
         <div className="p-5 flex justify-center border-b border-border">
@@ -91,13 +104,34 @@ const BusinessPlan = () => {
           </Button>
         </div>
       </aside>
+      )}
 
       {/* Right side - header + content scroll together */}
       <div className="flex-1 flex flex-col h-screen overflow-y-auto">
         {/* Header */}
         <header className="h-16 bg-primary flex items-center justify-between px-6 shrink-0">
-          <img src={ippfLogo} alt="IPPF" className="h-10" />
           <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              title={sidebarOpen ? "Hide Sidebar" : "Show Sidebar"}
+            >
+              {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
+            </Button>
+            <img src={ippfLogo} alt="IPPF" className="h-10" />
+          </div>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={toggleFullscreen}
+              title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+            >
+              {isFullscreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
+            </Button>
             <Button
               variant="outline"
               size="sm"
