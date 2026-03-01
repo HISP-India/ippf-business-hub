@@ -45,7 +45,7 @@ const IncomeTable = ({
     <tr>
       <td
         colSpan={4}
-        className="text-center font-semibold text-sm py-3 bg-secondary/30 border-b border-border"
+        className="text-center font-semibold text-sm py-3.5 bg-[#005F6A] text-white border-b border-border"
       >
         {title}
       </td>
