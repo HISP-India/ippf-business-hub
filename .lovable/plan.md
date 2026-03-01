@@ -1,52 +1,17 @@
 
 
-# Align Accordion Design Across Sections 2.2, 2.3, and 2.4 to Match 1.1
+## Replace Purple with Deep Teal in Business Plan Module
 
-## Problem
-Sections 2.2, 2.3, and 2.4 use a flat `Collapsible` style with teal-tinted backgrounds and no numbered badges, while section 1.1 uses a more polished `SectionAccordion` pattern with numbered circle badges, bordered containers, and a light blue active state. This creates visual inconsistency.
+The purple color (`#5B4A9E`) is used in two places and needs to be replaced with **Deep Teal (`#005F6A`)** from the IPPF brand palette. Deep Teal is designated for "section headers and structural highlights" and complements the Fire Red header bar well — both are dark, institutional tones that create a cohesive visual hierarchy.
 
-## Solution
-Replace the `Collapsible`-based accordion in all three sections with the same `SectionAccordion` pattern used in 1.1.
+### Changes
 
-### Design Pattern (from 1.1)
-- Each accordion item wrapped in a `border border-border rounded-md` container
-- Trigger has a **numbered circle badge** (Deep Teal `#005F6A` background with white text when open, plain teal text when closed)
-- Active trigger background: `#00AEEF/20` (light Sky Blue)
-- Inactive trigger: white background with hover effect
-- Content area: white background with `p-5` padding
-- Items stacked with `space-y-3` gap
+**1. Business Plan context bar** (`src/pages/BusinessPlan.tsx`, line 166)
+- Replace `bg-[#5B4A9E]` with `bg-[#005F6A]` (Deep Teal)
 
-### Extract Shared Component
-Create a reusable `SectionAccordion` component in `src/components/business-plan/SectionAccordion.tsx` so all sections share the exact same accordion UI, avoiding code duplication.
+**2. Dashboard navigation card for "Standard Report Generation"** (`src/pages/Dashboard.tsx`, lines 112-113)
+- Replace `bg-[hsl(258,90%,66%)]` with a Deep Teal variant, e.g. `bg-[#007A8A]` (slightly lighter teal for differentiation from the existing teal card)
+- Update hover to `hover:bg-[#006575]`
 
-## Technical Changes
+This keeps all three dashboard cards visually distinct (Deep Blue, Deep Teal, Medium Teal) while staying within the IPPF palette and eliminating purple entirely.
 
-### New File: `src/components/business-plan/SectionAccordion.tsx`
-- Extract the `SectionAccordion` component currently defined inside `OrganizationDetails.tsx`
-- Export it for use across all business plan sections
-
-### File: `src/components/business-plan/OrganizationDetails.tsx`
-- Import `SectionAccordion` from the new shared file
-- Remove the local `SectionAccordion` definition
-
-### File: `src/components/business-plan/ProjectExpenseBudget.tsx`
-- Remove `Collapsible` imports
-- Import `SectionAccordion` from the shared file
-- Replace each `Collapsible`/`CollapsibleTrigger`/`CollapsibleContent` with `SectionAccordion`
-- Accordion items get numbered badges (1-11) matching the project item index
-
-### File: `src/components/business-plan/ExpenseBudgetByFocusArea.tsx`
-- Same replacement: swap `Collapsible` for `SectionAccordion`
-- Each project item gets its numbered badge
-
-### File: `src/components/business-plan/BudgetByExpenseCategory.tsx`
-- Same replacement: swap `Collapsible` for `SectionAccordion`
-- Each project item gets its numbered badge
-
-## Visual Result
-All accordion sections across 1.1, 2.2, 2.3, and 2.4 will have:
-- Consistent bordered containers
-- Numbered circle badges with Deep Teal colouring
-- Light Sky Blue active state background
-- White content areas
-- Uniform spacing and typography
