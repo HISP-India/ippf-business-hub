@@ -109,8 +109,8 @@ const navCards = [
   },
   {
     title: "Standard Report Generation from the BP Portal",
-    bg: "bg-[hsl(258,90%,66%)]",
-    hoverBg: "hover:bg-[hsl(258,90%,58%)]",
+    bg: "bg-[#007A8A]",
+    hoverBg: "hover:bg-[#006575]",
     icon: BarChart3,
     route: "/report-generation",
   },
