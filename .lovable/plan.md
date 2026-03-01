@@ -1,29 +1,19 @@
 
 
-## Highlight Section Headers in Total Income Table
+## Strengthen Text Field Borders Uniformly
 
-The section headers ("Locally generated income", "International income (Non - IPPF)", "IPPF income") currently use a subtle `bg-secondary/30` which blends in with the rest of the table rows. They need to stand out visually.
+The current border on all text fields uses `border-input` which resolves to a very light grey (`#E0E0E0` equivalent). The border width is the default 1px. To make borders more visible without changing the color away from the IPPF guideline border grey, we increase the border width to **1.5px** across all form controls.
 
-### Change
+### Changes
 
-**File:** `src/components/business-plan/TotalIncome.tsx` (lines 45-51)
+**1. Input (`src/components/ui/input.tsx`)**
+- Replace `border border-input` with `border-[1.5px] border-[#ccc]` for a stronger, more visible border
 
-Update the section header `<tr>` styling in the `IncomeTable` component from:
-- `bg-secondary/30` with plain text
+**2. Textarea (`src/components/ui/textarea.tsx`)**
+- Same change: `border border-input` → `border-[1.5px] border-[#ccc]`
 
-To:
-- **Deep Teal (`#005F6A`) background** with **white text**, bold font, and slightly more padding — consistent with the IPPF brand palette used for section headers throughout the Business Plan module.
+**3. Select trigger (`src/components/ui/select.tsx`)**
+- Same border update on `SelectTrigger`
 
-```tsx
-<tr>
-  <td
-    colSpan={4}
-    className="text-center font-semibold text-sm py-3.5 bg-[#005F6A] text-white border-b border-border"
-  >
-    {title}
-  </td>
-</tr>
-```
-
-This creates a clear visual separation between section groups while staying within the IPPF design system (Deep Teal for structural highlights).
+This keeps the neutral institutional look while making field boundaries clearly visible across all Business Plan tabs.
 
