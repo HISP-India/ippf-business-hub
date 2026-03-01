@@ -163,7 +163,7 @@ const BusinessPlan = () => {
         </header>
 
         {/* Context bar */}
-        <div className="bg-[#5B4A9E] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm shrink-0">
+        <div className="bg-[#005F6A] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm shrink-0">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
             <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
