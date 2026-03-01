@@ -1,17 +1,29 @@
 
 
-## Replace Purple with Deep Teal in Business Plan Module
+## Highlight Section Headers in Total Income Table
 
-The purple color (`#5B4A9E`) is used in two places and needs to be replaced with **Deep Teal (`#005F6A`)** from the IPPF brand palette. Deep Teal is designated for "section headers and structural highlights" and complements the Fire Red header bar well — both are dark, institutional tones that create a cohesive visual hierarchy.
+The section headers ("Locally generated income", "International income (Non - IPPF)", "IPPF income") currently use a subtle `bg-secondary/30` which blends in with the rest of the table rows. They need to stand out visually.
 
-### Changes
+### Change
 
-**1. Business Plan context bar** (`src/pages/BusinessPlan.tsx`, line 166)
-- Replace `bg-[#5B4A9E]` with `bg-[#005F6A]` (Deep Teal)
+**File:** `src/components/business-plan/TotalIncome.tsx` (lines 45-51)
 
-**2. Dashboard navigation card for "Standard Report Generation"** (`src/pages/Dashboard.tsx`, lines 112-113)
-- Replace `bg-[hsl(258,90%,66%)]` with a Deep Teal variant, e.g. `bg-[#007A8A]` (slightly lighter teal for differentiation from the existing teal card)
-- Update hover to `hover:bg-[#006575]`
+Update the section header `<tr>` styling in the `IncomeTable` component from:
+- `bg-secondary/30` with plain text
 
-This keeps all three dashboard cards visually distinct (Deep Blue, Deep Teal, Medium Teal) while staying within the IPPF palette and eliminating purple entirely.
+To:
+- **Deep Teal (`#005F6A`) background** with **white text**, bold font, and slightly more padding — consistent with the IPPF brand palette used for section headers throughout the Business Plan module.
+
+```tsx
+<tr>
+  <td
+    colSpan={4}
+    className="text-center font-semibold text-sm py-3.5 bg-[#005F6A] text-white border-b border-border"
+  >
+    {title}
+  </td>
+</tr>
+```
+
+This creates a clear visual separation between section groups while staying within the IPPF design system (Deep Teal for structural highlights).
 
