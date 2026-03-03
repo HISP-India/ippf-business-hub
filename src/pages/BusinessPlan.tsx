@@ -163,22 +163,22 @@ const BusinessPlan = () => {
         </header>
 
         {/* Context bar */}
-        <div className="bg-[#00AEEF] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm shrink-0">
+        <div className="bg-[#F8F9EB] text-[#333333] px-6 py-3 grid grid-cols-4 gap-4 text-sm shrink-0">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Year</p>
-            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="2027" readOnly />
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#666666]">Year</p>
+            <Input className="mt-1 bg-white border-[#ccc] text-[#333333] placeholder:text-[#999] h-8 text-sm" defaultValue="2027" readOnly />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Region</p>
-            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={region} readOnly />
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#666666]">Region</p>
+            <Input className="mt-1 bg-white border-[#ccc] text-[#333333] placeholder:text-[#999] h-8 text-sm" value={region} readOnly />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA</p>
-            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" value={ma} readOnly />
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#666666]">MA</p>
+            <Input className="mt-1 bg-white border-[#ccc] text-[#333333] placeholder:text-[#999] h-8 text-sm" value={ma} readOnly />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">MA-ID</p>
-            <Input className="mt-1 bg-white/20 border-white/30 text-white placeholder:text-white/60 h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#666666]">MA-ID</p>
+            <Input className="mt-1 bg-white border-[#ccc] text-[#333333] placeholder:text-[#999] h-8 text-sm" defaultValue="IPPF_CODE" readOnly />
           </div>
         </div>
 
