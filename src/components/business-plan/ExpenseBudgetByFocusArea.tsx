@@ -98,7 +98,7 @@ const ExpenseBudgetByFocusArea = () => {
 
               {/* Variation */}
               <div className="mb-5">
-                <label className="text-sm font-semibold text-[#005F6A] block mb-1">Variation from total project budget 2024</label>
+                <label className="text-sm font-semibold text-[#005F6A] block mb-1">Variation from total project budget</label>
                 <CurrencyInput readOnly />
               </div>
 
