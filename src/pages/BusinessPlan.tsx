@@ -90,7 +90,6 @@ const BusinessPlan = () => {
                 </li>
               ))}
             </ul>
-          )}
         </nav>
 
         {/* Back button */}
