@@ -68,16 +68,13 @@ const BusinessPlan = () => {
 
         {/* Menu */}
         <nav className="flex-1">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-full flex items-center justify-between px-5 py-3 bg-secondary hover:bg-secondary/80 transition-colors font-semibold text-sm text-foreground border-b border-border"
+          <div
+            className="w-full flex items-center px-5 py-3 bg-secondary font-semibold text-sm text-foreground border-b border-border"
           >
             Annual Business Plan
-            {menuOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-          </button>
+          </div>
 
-          {menuOpen && (
-            <ul className="flex flex-col">
+          <ul className="flex flex-col">
               {bpMenuItems.map((item) => (
                 <li key={item.id}>
                   <button
@@ -93,7 +90,6 @@ const BusinessPlan = () => {
                 </li>
               ))}
             </ul>
-          )}
         </nav>
 
         {/* Back button */}
