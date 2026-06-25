@@ -58,8 +58,8 @@ const LoginPage = () => {
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-[30px] font-semibold leading-tight text-primary">
-                Business Planning<br />& Reporting Portal
+              <h1 className="text-[22px] font-semibold leading-tight text-primary whitespace-nowrap">
+                Business Planning & Reporting Portal
               </h1>
               <p className="text-[15px] text-muted-foreground">
                 Please enter details to continue
