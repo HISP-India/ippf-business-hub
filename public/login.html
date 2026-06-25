@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IPPF Business Planning & Reporting Portal — Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #EE3124;
+    --primary-hover: #D92B20;
+    --text: #333333;
+    --text-muted: #666666;
+    --border: #E0E0E0;
+    --bg: #FFFFFF;
+    --bg-soft: #F5F5F5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { display: flex; min-height: 100vh; }
+
+  /* Left banner */
+  .banner {
+    width: 55%;
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  .banner img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Right form panel */
+  .panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+  .panel-top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+  .lang-select {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .lang-select svg { width: 16px; height: 16px; color: var(--text-muted); }
+
+  .form-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px 64px;
+  }
+  .form-box { width: 100%; max-width: 400px; }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .brand img { height: 48px; width: auto; }
+  .brand-text {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text);
+    padding-left: 12px;
+    border-left: 1px solid var(--border);
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary);
+    line-height: 1.2;
+    white-space: nowrap;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    background: #fafafa;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(238,49,36,.15);
+  }
+  .password-wrap { position: relative; }
+  .password-wrap .input { padding-right: 48px; }
+  .toggle-pass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 4px;
+    display: inline-flex;
+  }
+  .toggle-pass:hover { color: var(--text); }
+  .toggle-pass svg { width: 20px; height: 20px; }
+
+  .btn-primary {
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .15s;
+  }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 1024px) {
+    .banner { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left: Banner -->
+    <div class="banner">
+      <img src="/src/assets/login-bg.jpeg" alt="IPPF Banner" />
+    </div>
+
+    <!-- Right: Form -->
+    <div class="panel">
+      <div class="panel-top">
+        <select class="lang-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+
+      <div class="form-wrap">
+        <div class="form-box">
+          <div class="brand">
+            <img src="/src/assets/ippf-logo-red-new.png" alt="IPPF Logo" />
+            <span class="brand-text">
+              International<br />Planned Parenthood<br />Federation
+            </span>
+          </div>
+
+          <h1 class="title">Business Planning &amp; Reporting Portal</h1>
+          <p class="subtitle">Please enter details to continue</p>
+
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="username">Username</label>
+              <input id="username" name="username" class="input" type="text" placeholder="Enter username" autocomplete="username" />
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="password-wrap">
+                <input id="password" name="password" class="input" type="password" placeholder="Enter password" autocomplete="current-password" />
+                <button type="button" class="toggle-pass" id="togglePass" aria-label="Show password">
+                  <!-- eye icon -->
+                  <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Log In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password show/hide
+    const toggle = document.getElementById('togglePass');
+    const passInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const eyeOpen = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
+    const eyeOff = '<path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-10-7-10-7a19.6 19.6 0 0 1 4.22-5.39"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 10 7 10 7a19.6 19.6 0 0 1-3.17 4.19"/><path d="M1 1l22 22"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/>';
+    toggle.addEventListener('click', () => {
+      const isPw = passInput.type === 'password';
+      passInput.type = isPw ? 'text' : 'password';
+      eyeIcon.innerHTML = isPw ? eyeOff : eyeOpen;
+      toggle.setAttribute('aria-label', isPw ? 'Hide password' : 'Show password');
+    });
+
+    // Form submit (prototype)
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = '/dashboard';
+    });
+  </script>
+</body>
+</html>
